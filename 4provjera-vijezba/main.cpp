@@ -187,6 +187,18 @@ int main()
             }
             ispis_svega(baza,saldo_temp);
         }
+        else if(izbor == 3)
+        {
+            cout << "Odabrali ste pretrazivanje po prezimenu i imenu" << endl;
+            cout << "Unesite prezime i ime koje pretrazujete: ";
+            string pretraga;
+            cin.ignore();
+            getline(cin, pretraga);
+            if(ispis_podataka(baza,pretraga)==false)
+            {
+                cout << "Ne postoji racun s takvim prezimenom i imenom" << endl;
+            }
+        }
         else if(izbor == 7)
         {
             cout << "Odabrali ste izlaz iz programa" << endl;
