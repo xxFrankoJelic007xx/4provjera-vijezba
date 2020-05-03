@@ -177,6 +177,16 @@ int main()
             cout << "Odabrali ste unos novog racuna"<<endl;
             novi_racun(baza);
         }
+        else if(izbor == 2)
+        {
+            cout << "Odabrali ste ispis svih podataka" << endl;
+            double saldo_temp[1000];
+            for(int i = 0;i < brKlijenata;i++)
+            {
+                saldo_temp[i]=baza[i].saldo;
+            }
+            ispis_svega(baza,saldo_temp);
+        }
         else if(izbor == 7)
         {
             cout << "Odabrali ste izlaz iz programa" << endl;
