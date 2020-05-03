@@ -199,6 +199,30 @@ int main()
                 cout << "Ne postoji racun s takvim prezimenom i imenom" << endl;
             }
         }
+        else if(izbor == 4)
+        {
+            cout << "Odabrali ste brisanje racuna" << endl;
+            unsigned long long int id_racun;
+            cout << "Unesite broj racuna kojeg zelite izbrisati: ";
+            cin >> id_racun;
+            int i;
+            for(i = 0; i < brKlijenata; i++)
+            {
+                if(baza[i].id_racuna == id_racun)
+                {
+                    for(int j = i; j < brKlijenata - 1; j++)
+                    {
+                        baza[j].id_racuna = baza[j+1].id_racuna;
+                        baza[j].ime = baza[j+1].ime;
+                        baza[j].saldo = baza[j+1].saldo;
+                    }
+                    brKlijenata--;
+                    break;
+                }
+            }
+            if(i==brKlijenata)
+                cout << "Trazenog racuna nema." << endl;
+        }
         else if(izbor == 7)
         {
             cout << "Odabrali ste izlaz iz programa" << endl;
