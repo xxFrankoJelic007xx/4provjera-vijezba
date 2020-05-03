@@ -223,6 +223,76 @@ int main()
             if(i==brKlijenata)
                 cout << "Trazenog racuna nema." << endl;
         }
+        else if(izbor == 5)
+        {
+            cout << "Odabrali ste mijenjanje podataka" << endl;
+            cout << "Unesite broj racuna kojem zelite promijeniti podatke: ";
+            unsigned long long int broj;
+            cin >> broj;
+            int indeks;
+            for(int i = 0; i < brKlijenata; i++)
+            {
+                temp_id[i].id_racuna = baza[i].id_racuna;
+                temp_id[i].indeks = i;
+            }
+            for (int i = 0; i < brKlijenata-1; i++)
+                for (int j = 0; j < brKlijenata-i-1; j++)
+                    if (temp_id[j].id_racuna > temp_id[j+1].id_racuna)
+                    {
+                        unsigned long long int temp_brracuna = temp_id[j].id_racuna;
+                        int temp_indeks = temp_id[j].indeks;
+                        temp_id[j].id_racuna=temp_id[j+1].id_racuna;
+                        temp_id[j].indeks=temp_id[j+1].indeks;
+                        temp_id[j+1].id_racuna = temp_brracuna;
+                        temp_id[j+1].indeks = temp_indeks;
+                    }
+            if(binary(temp_id,0,brKlijenata-1,broj,indeks) == true)
+            {
+                cout << "Pronasli smo racun" << endl << baza[indeks].ime << endl << "Saldo: " << baza[indeks].saldo << endl;
+                cout << "Za promjenu podataka racuna odaberite sto zelite promijeniti" << endl;
+                cout << "---> 1 = Promjena Prezimena i Imena" << endl;
+                cout << "---> 2 = Promjena Salda" << endl;
+                cout << "Unesite broj: " ;
+                int broj_prom;
+                cin >> broj_prom;
+                if(broj_prom == 1)
+                {
+                    cout << "Unesite novo Prezime i ime: ";
+                    cin.ignore();
+                    getline(cin,baza[indeks].ime);
+                    cout << "Novo Prezime i ime je: " << baza[indeks].ime << endl;
+                }
+                else if(broj_prom == 2)
+                {
+                    cout << "Unesite novi saldo: ";
+                    cin >> baza[indeks].saldo;
+                    cout << "Novi saldo je: " << baza[indeks].saldo << endl;
+                }
+                else
+                {
+                    cout << "Krivi unos" << endl;
+                    cout << "Sve sad ispocetka" << endl;
+                }
+            }
+            else
+            {
+                cout << "Ne postoji racun s tim brojem" << endl;
+            }
+            
+            
+            
+        }
+        else if(izbor == 6)
+        {
+            cout << "Odabrali ste ispis svih podataka sortirano po prezimenu i imenu" << endl;
+            string imena[1000];
+            for(int i = 0; i < brKlijenata; i++)
+            {
+                imena[i] = baza[i].ime;
+            }
+            sort(imena,imena+brKlijenata);
+            ispis_sortirano(baza,imena);
+        }
         else if(izbor == 7)
         {
             cout << "Odabrali ste izlaz iz programa" << endl;
